@@ -63,7 +63,11 @@ public class BatchStatus {
     filled, // the order was found completely filled and could not be cancelled
     notFound, // the order was not found, either because it had already been cancelled or it never
     // existed
-    requiredArgumentMissing // the request does not contain order_id and/or cliOrdId parameters
+    requiredArgumentMissing, // the request does not contain order_id and/or cliOrdId parameters
+    edited, // the order was edited successfully
+    wouldNotReducePosition, // the edit cannot be applied because the reduce only policy is violated. (Only for reduceOnly orders)
+    orderForEditNotFound, // the requested order for edit has not been found
+    orderForEditNotAStop // the supplied stopPrice cannot be applied because order is not a stop order
   }
 
   @Override
