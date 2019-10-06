@@ -10,6 +10,7 @@ import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccount;
 import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccountInfo;
 import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccounts;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancel;
+import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancelAllOrders;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesFill;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesFills;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesOpenOrder;
@@ -235,5 +236,9 @@ public class CryptoFacilitiesAdapters {
 
   public static boolean adaptCryptoFacilitiesCancel(CryptoFacilitiesCancel cancel) {
     return cancel.isSuccess();
+  }
+
+  public static boolean adaptCryptoFacilitiesCancelAllOrders(CryptoFacilitiesCancelAllOrders cancelAllCryptoFacilitiesOrder) {
+    return cancelAllCryptoFacilitiesOrder.isSuccess();
   }
 }
