@@ -36,6 +36,18 @@ public class CryptoFacilitiesExchange extends BaseExchange implements Exchange {
   }
 
   @Override
+  public void applySpecification(ExchangeSpecification exchangeSpecification) {
+    if (exchangeSpecification.getExchangeSpecificParameters() != null) {
+      if (exchangeSpecification.getExchangeSpecificParametersItem("Use_Sandbox").equals(true)) {
+        exchangeSpecification.setSslUri("https://conformance.cryptofacilities.com/derivatives");
+        exchangeSpecification.setHost("conformance.cryptofacilities.com");
+      }
+    }
+
+    super.applySpecification(exchangeSpecification);
+  }
+
+  @Override
   public SynchronizedValueFactory<Long> getNonceFactory() {
 
     return nonceFactory;
