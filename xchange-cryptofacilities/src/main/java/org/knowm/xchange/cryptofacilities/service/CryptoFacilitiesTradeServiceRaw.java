@@ -9,6 +9,7 @@ import org.knowm.xchange.cryptofacilities.Util;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancel;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancelAllOrders;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancelAllOrdersAfter;
+import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesEditOrder;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesFills;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesOpenOrders;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesOpenPositions;
@@ -60,6 +61,25 @@ public class CryptoFacilitiesTradeServiceRaw extends CryptoFacilitiesBaseService
       return ord;
     } else {
       throw new ExchangeException("Error sending CF limit order: " + ord.getError());
+    }
+  }
+
+  protected CryptoFacilitiesEditOrder editCryptoFacilitiesLimitOrder(LimitOrder limitOrder) throws IOException {
+    CryptoFacilitiesEditOrder ord =
+            cryptoFacilities.editOrder(
+                    exchange.getExchangeSpecification().getApiKey(),
+                    signatureCreator,
+                    exchange.getNonceFactory(),
+                    limitOrder.getId(),
+                    limitOrder.getOriginalAmount(),
+                    limitOrder.getLimitPrice(),
+                    null,
+                    null);
+
+    if (ord.isSuccess()) {
+      return ord;
+    } else {
+      throw new ExchangeException("Error editing CF limit order: " + ord.getError());
     }
   }
 

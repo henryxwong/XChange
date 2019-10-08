@@ -14,6 +14,7 @@ import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccounts;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancel;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancelAllOrders;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancelAllOrdersAfter;
+import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesEditOrder;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesFills;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesOpenOrders;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesOpenPositions;
@@ -48,6 +49,19 @@ public interface CryptoFacilitiesAuthenticated extends CryptoFacilities {
       @QueryParam("size") BigDecimal size,
       @QueryParam("limitPrice") BigDecimal limitPrice)
       throws IOException;
+
+  @POST
+  @Path("editorder")
+  CryptoFacilitiesEditOrder editOrder(
+          @HeaderParam("APIKey") String apiKey,
+          @HeaderParam("Authent") ParamsDigest signer,
+          @HeaderParam("Nonce") SynchronizedValueFactory<Long> nonce,
+          @QueryParam("orderId") String orderId,
+          @QueryParam("size") BigDecimal size,
+          @QueryParam("limitPrice") BigDecimal limitPrice,
+          @QueryParam("stopPrice") BigDecimal stopPrice,
+          @QueryParam("cliOrdId") String cliOrdId)
+          throws IOException;
 
   @POST
   @Path("batchorder")

@@ -1,16 +1,11 @@
 package org.knowm.xchange.cryptofacilities;
 
-import java.math.BigDecimal;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccount;
 import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccountInfo;
 import org.knowm.xchange.cryptofacilities.dto.account.CryptoFacilitiesAccounts;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancel;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesCancelAllOrders;
+import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesEditOrder;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesFill;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesFills;
 import org.knowm.xchange.cryptofacilities.dto.marketdata.CryptoFacilitiesOpenOrder;
@@ -33,6 +28,13 @@ import org.knowm.xchange.dto.trade.LimitOrder;
 import org.knowm.xchange.dto.trade.OpenOrders;
 import org.knowm.xchange.dto.trade.UserTrade;
 import org.knowm.xchange.dto.trade.UserTrades;
+
+import java.math.BigDecimal;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /** @author Jean-Christophe Laruelle */
 public class CryptoFacilitiesAdapters {
@@ -120,6 +122,10 @@ public class CryptoFacilitiesAdapters {
   public static String adaptOrderId(CryptoFacilitiesOrder order) {
 
     return order.getOrderId();
+  }
+
+  public static String adaptOrderId(CryptoFacilitiesEditOrder editOrder) {
+    return editOrder.getEditStatus().getOrderId();
   }
 
   public static OrderType adaptOrderType(String cryptoFacilitiesOrderType) {

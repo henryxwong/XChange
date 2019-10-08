@@ -54,6 +54,12 @@ public class CryptoFacilitiesTradeService extends CryptoFacilitiesTradeServiceRa
   }
 
   @Override
+  public String changeOrder(LimitOrder limitOrder) throws IOException {
+
+    return CryptoFacilitiesAdapters.adaptOrderId(super.editCryptoFacilitiesLimitOrder(limitOrder));
+  }
+
+  @Override
   public boolean cancelOrder(String orderId) throws IOException {
 
     return CryptoFacilitiesAdapters.adaptCryptoFacilitiesCancel(
